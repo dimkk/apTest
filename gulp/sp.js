@@ -28,7 +28,7 @@ gulp.task('open', function(){
   )
 });
 
-  gulp.task('watch-sp', function () {
+  gulp.task('watch-sp', ['copy'], function () {
     gulp.watch(['./src/**/*.*', './bower_components/**/*'], function (event) {
       console.log(event);
       if (event.type == 'added' || event.type == 'deleted') {

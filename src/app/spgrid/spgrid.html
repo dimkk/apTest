@@ -9,17 +9,21 @@
       </tr>
       </thead>
       <tbody>
-      <tr ng-repeat="item in items"><td ng-repeat="fieldd in fields">{{item[fieldd.mappedName]}}</td></tr>
+      <tr ng-repeat="item in items">
+        <td ng-repeat="fieldd in fields">
+          <span ng-click="showEdit[fieldd.mappedName] = true" ng-show="!showEdit[fieldd.mappedName]" style="min-width: 200px;">{{item[fieldd.mappedName]}}</span>
+          <input ng-show="showEdit[fieldd.mappedName]" ng-model="item[fieldd.mappedName]" ng-model-options="{debounce:200}" ng-change="updateItem(item)" ng-blur="showEdit[fieldd.mappedName] = false">
+        </td>
+      <td><button ng-click="$parent.removeItem(item)" type="button">remove</button></td>
+      </tr>
       <tr>
-        <td><input ng-model="newItem.title"></td>
-        <td><input ng-model="newItem.superfield"></td>
-        <td><input ng-model="newItem.topfield"></td>
+        <td ng-repeat="field in fields"><input ng-model="$parent.newItem[field.mappedName]"></td>
         <td><button ng-click="addItem(newItem)" type="button">add</button></td>
       </tr>
       </tbody>
     </table>
 
-<pre>
+    <pre>
     </pre>
 
   </div>
